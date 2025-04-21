@@ -36,10 +36,9 @@
             panel1 = new Panel();
             label2 = new Label();
             panel2 = new Panel();
-            LargeBtn = new Guna.UI2.WinForms.Guna2RadioButton();
-            MediumBtn = new Guna.UI2.WinForms.Guna2RadioButton();
-            SmallBtn = new Guna.UI2.WinForms.Guna2RadioButton();
-            label1 = new Label();
+            priceLbl = new Label();
+            flowerPic = new PictureBox();
+            comboCatalog = new ComboBox();
             BilliDGV = new Guna.UI2.WinForms.Guna2DataGridView();
             Column5 = new DataGridViewTextBoxColumn();
             Column1 = new DataGridViewTextBoxColumn();
@@ -47,14 +46,13 @@
             Column3 = new DataGridViewTextBoxColumn();
             Column4 = new DataGridViewTextBoxColumn();
             label4 = new Label();
-            QtyTb = new TextBox();
-            label3 = new Label();
-            label5 = new Label();
             Logoutbtn = new Button();
-            PrintBtn = new Button();
             OrderBtn = new Button();
             SettingBtn = new Button();
+            totalLbl = new Label();
+            confirmBtn = new Button();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)flowerPic).BeginInit();
             ((System.ComponentModel.ISupportInitialize)BilliDGV).BeginInit();
             SuspendLayout();
             // 
@@ -85,78 +83,42 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(LargeBtn);
-            panel2.Controls.Add(MediumBtn);
-            panel2.Controls.Add(SmallBtn);
-            panel2.Controls.Add(label1);
-            panel2.Location = new Point(141, 79);
+            panel2.Controls.Add(priceLbl);
+            panel2.Controls.Add(flowerPic);
+            panel2.Controls.Add(comboCatalog);
+            panel2.Location = new Point(119, 79);
             panel2.Name = "panel2";
-            panel2.Size = new Size(334, 304);
+            panel2.Size = new Size(381, 409);
             panel2.TabIndex = 7;
             // 
-            // LargeBtn
+            // priceLbl
             // 
-            LargeBtn.AutoSize = true;
-            LargeBtn.CheckedState.BorderColor = Color.FromArgb(94, 148, 255);
-            LargeBtn.CheckedState.BorderThickness = 0;
-            LargeBtn.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
-            LargeBtn.CheckedState.InnerColor = Color.White;
-            LargeBtn.CheckedState.InnerOffset = -4;
-            LargeBtn.Location = new Point(26, 181);
-            LargeBtn.Name = "LargeBtn";
-            LargeBtn.Size = new Size(189, 26);
-            LargeBtn.TabIndex = 11;
-            LargeBtn.Text = "Большой (15+ цветов)";
-            LargeBtn.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
-            LargeBtn.UncheckedState.BorderThickness = 2;
-            LargeBtn.UncheckedState.FillColor = Color.Transparent;
-            LargeBtn.UncheckedState.InnerColor = Color.Transparent;
+            priceLbl.AutoSize = true;
+            priceLbl.Location = new Point(14, 351);
+            priceLbl.Name = "priceLbl";
+            priceLbl.Size = new Size(52, 22);
+            priceLbl.TabIndex = 23;
+            priceLbl.Text = "label5";
             // 
-            // MediumBtn
+            // flowerPic
             // 
-            MediumBtn.AutoSize = true;
-            MediumBtn.CheckedState.BorderColor = Color.FromArgb(94, 148, 255);
-            MediumBtn.CheckedState.BorderThickness = 0;
-            MediumBtn.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
-            MediumBtn.CheckedState.InnerColor = Color.White;
-            MediumBtn.CheckedState.InnerOffset = -4;
-            MediumBtn.Location = new Point(26, 128);
-            MediumBtn.Name = "MediumBtn";
-            MediumBtn.Size = new Size(192, 26);
-            MediumBtn.TabIndex = 10;
-            MediumBtn.Text = "Средний (8–15 цветов)";
-            MediumBtn.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
-            MediumBtn.UncheckedState.BorderThickness = 2;
-            MediumBtn.UncheckedState.FillColor = Color.Transparent;
-            MediumBtn.UncheckedState.InnerColor = Color.Transparent;
+            flowerPic.Location = new Point(14, 72);
+            flowerPic.Name = "flowerPic";
+            flowerPic.Size = new Size(312, 267);
+            flowerPic.SizeMode = PictureBoxSizeMode.StretchImage;
+            flowerPic.TabIndex = 22;
+            flowerPic.TabStop = false;
+            flowerPic.Click += flowerPic_Click;
             // 
-            // SmallBtn
+            // comboCatalog
             // 
-            SmallBtn.AutoSize = true;
-            SmallBtn.CheckedState.BorderColor = Color.FromArgb(94, 148, 255);
-            SmallBtn.CheckedState.BorderThickness = 0;
-            SmallBtn.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
-            SmallBtn.CheckedState.InnerColor = Color.White;
-            SmallBtn.CheckedState.InnerOffset = -4;
-            SmallBtn.Location = new Point(26, 74);
-            SmallBtn.Name = "SmallBtn";
-            SmallBtn.Size = new Size(211, 26);
-            SmallBtn.TabIndex = 9;
-            SmallBtn.Text = "Маленький (до 7 цветов)";
-            SmallBtn.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
-            SmallBtn.UncheckedState.BorderThickness = 2;
-            SmallBtn.UncheckedState.FillColor = Color.Transparent;
-            SmallBtn.UncheckedState.InnerColor = Color.Transparent;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label1.Location = new Point(103, 11);
-            label1.Name = "label1";
-            label1.Size = new Size(134, 22);
-            label1.TabIndex = 8;
-            label1.Text = "Выберите букет";
+            comboCatalog.FormattingEnabled = true;
+            comboCatalog.Items.AddRange(new object[] { "Большой (15+ цветов)", "Средний (8–15 цветов)", "Маленький (до 7 цветов)" });
+            comboCatalog.Location = new Point(14, 16);
+            comboCatalog.Name = "comboCatalog";
+            comboCatalog.Size = new Size(212, 30);
+            comboCatalog.TabIndex = 12;
+            comboCatalog.SelectedIndexChanged += comboCatalog_SelectedIndexChanged_1;
             // 
             // BilliDGV
             // 
@@ -182,10 +144,10 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             BilliDGV.DefaultCellStyle = dataGridViewCellStyle3;
             BilliDGV.GridColor = Color.FromArgb(231, 229, 255);
-            BilliDGV.Location = new Point(548, 79);
+            BilliDGV.Location = new Point(557, 79);
             BilliDGV.Name = "BilliDGV";
             BilliDGV.RowHeadersVisible = false;
-            BilliDGV.Size = new Size(708, 448);
+            BilliDGV.Size = new Size(704, 448);
             BilliDGV.TabIndex = 10;
             BilliDGV.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             BilliDGV.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -247,40 +209,12 @@
             label4.Text = "X";
             label4.Click += label4_Click;
             // 
-            // QtyTb
-            // 
-            QtyTb.Font = new Font("Trebuchet MS", 14F);
-            QtyTb.Location = new Point(261, 436);
-            QtyTb.Name = "QtyTb";
-            QtyTb.Size = new Size(66, 29);
-            QtyTb.TabIndex = 12;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label3.Location = new Point(244, 402);
-            label3.Name = "label3";
-            label3.Size = new Size(104, 22);
-            label3.TabIndex = 13;
-            label3.Text = "Количество";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Trebuchet MS", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label5.Location = new Point(1110, 545);
-            label5.Name = "label5";
-            label5.Size = new Size(96, 22);
-            label5.TabIndex = 15;
-            label5.Text = "GrdTotalLbl";
-            // 
             // Logoutbtn
             // 
             Logoutbtn.BackColor = Color.PaleVioletRed;
             Logoutbtn.Cursor = Cursors.Hand;
             Logoutbtn.ForeColor = Color.White;
-            Logoutbtn.Location = new Point(141, 710);
+            Logoutbtn.Location = new Point(119, 710);
             Logoutbtn.Name = "Logoutbtn";
             Logoutbtn.Size = new Size(155, 37);
             Logoutbtn.TabIndex = 18;
@@ -288,27 +222,13 @@
             Logoutbtn.UseVisualStyleBackColor = false;
             Logoutbtn.Click += Logoutbtn_Click;
             // 
-            // PrintBtn
-            // 
-            PrintBtn.BackColor = Color.LightPink;
-            PrintBtn.Cursor = Cursors.Hand;
-            PrintBtn.Font = new Font("Trebuchet MS", 14F);
-            PrintBtn.ForeColor = Color.White;
-            PrintBtn.Location = new Point(1060, 600);
-            PrintBtn.Name = "PrintBtn";
-            PrintBtn.Size = new Size(196, 39);
-            PrintBtn.TabIndex = 19;
-            PrintBtn.Text = "Показать заказ";
-            PrintBtn.UseVisualStyleBackColor = false;
-            PrintBtn.Click += PrintBtn_Click_1;
-            // 
             // OrderBtn
             // 
             OrderBtn.BackColor = Color.LightPink;
             OrderBtn.Cursor = Cursors.Hand;
             OrderBtn.Font = new Font("Trebuchet MS", 14F);
             OrderBtn.ForeColor = Color.White;
-            OrderBtn.Location = new Point(198, 488);
+            OrderBtn.Location = new Point(119, 503);
             OrderBtn.Name = "OrderBtn";
             OrderBtn.Size = new Size(196, 39);
             OrderBtn.TabIndex = 20;
@@ -322,7 +242,7 @@
             SettingBtn.Cursor = Cursors.Hand;
             SettingBtn.Font = new Font("Trebuchet MS", 14F);
             SettingBtn.ForeColor = Color.White;
-            SettingBtn.Location = new Point(141, 600);
+            SettingBtn.Location = new Point(119, 601);
             SettingBtn.Name = "SettingBtn";
             SettingBtn.Size = new Size(196, 39);
             SettingBtn.TabIndex = 21;
@@ -330,18 +250,39 @@
             SettingBtn.UseVisualStyleBackColor = false;
             SettingBtn.Click += SettingBtn_Click_1;
             // 
+            // totalLbl
+            // 
+            totalLbl.AutoSize = true;
+            totalLbl.Location = new Point(557, 550);
+            totalLbl.Name = "totalLbl";
+            totalLbl.Size = new Size(52, 22);
+            totalLbl.TabIndex = 24;
+            totalLbl.Text = "label5";
+            // 
+            // confirmBtn
+            // 
+            confirmBtn.BackColor = Color.LightPink;
+            confirmBtn.Cursor = Cursors.Hand;
+            confirmBtn.Font = new Font("Trebuchet MS", 14F);
+            confirmBtn.ForeColor = Color.White;
+            confirmBtn.Location = new Point(1065, 550);
+            confirmBtn.Name = "confirmBtn";
+            confirmBtn.Size = new Size(196, 39);
+            confirmBtn.TabIndex = 25;
+            confirmBtn.Text = "Заказать";
+            confirmBtn.UseVisualStyleBackColor = false;
+            confirmBtn.Click += confirmBtn_Click_1;
+            // 
             // Billing
             // 
             AutoScaleDimensions = new SizeF(9F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1319, 787);
+            Controls.Add(confirmBtn);
+            Controls.Add(totalLbl);
             Controls.Add(SettingBtn);
             Controls.Add(OrderBtn);
-            Controls.Add(PrintBtn);
             Controls.Add(Logoutbtn);
-            Controls.Add(label5);
-            Controls.Add(label3);
-            Controls.Add(QtyTb);
             Controls.Add(label4);
             Controls.Add(BilliDGV);
             Controls.Add(panel2);
@@ -356,6 +297,7 @@
             Load += Billing_Load;
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)flowerPic).EndInit();
             ((System.ComponentModel.ISupportInitialize)BilliDGV).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -367,10 +309,6 @@
         private Panel panel1;
         private Panel panel2;
         private Label label2;
-        private Guna.UI2.WinForms.Guna2RadioButton SmallBtn;
-        private Label label1;
-        private Guna.UI2.WinForms.Guna2RadioButton LargeBtn;
-        private Guna.UI2.WinForms.Guna2RadioButton MediumBtn;
         private Guna.UI2.WinForms.Guna2DataGridView BilliDGV;
         private Bunifu.Framework.UI.BunifuThinButton2 OrderBtn1;
         private DataGridViewTextBoxColumn Column5;
@@ -378,13 +316,14 @@
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column4;
-        private Label label3;
-        private TextBox QtyTb;
         private Label label4;
-        private Label label5;
         private Button Logoutbtn;
-        private Button PrintBtn;
         private Button OrderBtn;
         private Button SettingBtn;
+        private ComboBox comboCatalog;
+        private PictureBox flowerPic;
+        private Label priceLbl;
+        private Label totalLbl;
+        private Button confirmBtn;
     }
 }

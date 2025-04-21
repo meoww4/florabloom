@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,10 @@ namespace florabloom
     {
         Functions Con;
         string Role = "user"; // по умолчанию обычный пользователь
+        int Key = 0;
+        int Price = 0;
+        int n = 0;
+        string Items;
 
         public Billing(string role)
         {
@@ -25,13 +30,18 @@ namespace florabloom
             // Скрытие кнопки настроек для обычных пользователей
             if (Role != "admin")
             {
-                SettingBtn.Visible = false; // Название кнопки настроек
+                SettingBtn.Visible = false;
             }
+
+            LoadBouquets();
+            comboCatalog.SelectedIndexChanged += comboCatalog_SelectedIndexChanged;
+            priceLbl.Text = " ";
+            totalLbl.Text = "Общая сумма: 0 ₽";
+            comboCatalog.SelectedItem = null;
         }
 
         private void Billing_Load(object sender, EventArgs e)
         {
-
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -41,63 +51,65 @@ namespace florabloom
 
         private void PrintBtn_Click_1(object sender, EventArgs e)
         {
-            /*printDocument1.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("pprnm", 285, 600);
+            /*
+            printDocument1.DefaultPageSettings.PaperSize = new System.Drawing.Printing.PaperSize("pprnm", 285, 600);
             if (printPreviewDialog1.ShowDialog() == DialogResult.OK)
             {
                 printDocument1.Print();
-            }*/
+            }
+            */
         }
 
         private void SettingBtn_Click_1(object sender, EventArgs e)
         {
-            Settings Obj = new Settings(this);
+            Settings Obj = new Settings(Role);
             Obj.Show();
-            this.Hide();
+            this.Close();
         }
-
-        int Key = 0;
-        int Price = 0;
-
-        private void GetPrice(int Key)
-        {
-            string Flower = "";
-            if (Key == 1) Flower = "Small";
-            else if (Key == 2) Flower = "Medium";
-            else if (Key == 3) Flower = "Large";
-
-            string Query = $"select * from FlowerTb where Item = '{Flower}'";
-            Price = Convert.ToInt32(Con.GetData(Query).Rows[0][1].ToString());
-        }
-
-        int n = 0;
-        string Items;
 
         private void OrderBtn_Click_1(object sender, EventArgs e)
         {
-            if (SmallBtn.Checked) { Key = 1; Items = "Маленький букет"; }
-            else if (MediumBtn.Checked) { Key = 2; Items = "Средний букет"; }
-            else if (LargeBtn.Checked) { Key = 3; Items = "Большой букет"; }
+            if (comboCatalog.SelectedItem is DataRowView row)
+            {
+                int bouquetId = Convert.ToInt32(row["Id"]);
+                string bouquetTitle = row["Title"].ToString();
+                int bouquetPrice = Convert.ToInt32(row["Price"]);
 
-            GetPrice(Key);
+                DataGridViewRow newRow = new DataGridViewRow();
+                newRow.CreateCells(BilliDGV);
+                newRow.Cells[0].Value = n + 1;
+                newRow.Cells[1].Value = bouquetTitle;
+                newRow.Cells[2].Value = bouquetPrice;
 
-            int Qty = Convert.ToInt32(QtyTb.Text);
-            int total = Qty * Price;
+                BilliDGV.Rows.Add(newRow);
+                n++;
 
-            DataGridViewRow newRow = new DataGridViewRow();
-            newRow.CreateCells(BilliDGV);
-            newRow.Cells[0].Value = n + 1;
-            newRow.Cells[1].Value = Items;
-            newRow.Cells[2].Value = Price;
-            newRow.Cells[3].Value = QtyTb.Text;
-            newRow.Cells[4].Value = total;
+                UpdateTotalAmount(); // ← Обновляем сумму после добавления
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста, выберите букет из списка.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
 
-            BilliDGV.Rows.Add(newRow);
-            n++;
+        private void UpdateTotalAmount()
+        {
+            int totalAmount = 0;
+
+            foreach (DataGridViewRow row in BilliDGV.Rows)
+            {
+                if (row.Cells[2].Value != null)
+                {
+                    totalAmount += Convert.ToInt32(row.Cells[2].Value);
+                }
+            }
+
+            totalLbl.Text = $"Общая сумма: {totalAmount} ₽";
         }
 
         private void SetPricebtn_Click(object sender, EventArgs e)
         {
-            // пустой пока, можно добавить реализацию позже
+            // Пусто
         }
 
         private void Logoutbtn_Click(object sender, EventArgs e)
@@ -106,5 +118,59 @@ namespace florabloom
             Obj.Show();
             this.Hide();
         }
+
+        // ---------- ДОБАВЛЕНО ДЛЯ COMBOBOX ----------
+
+        private void LoadBouquets()
+        {
+            string query = "SELECT Id, Title, Price, ImagePath FROM CatalogTb";
+            DataTable dt = Con.GetData(query);
+
+            comboCatalog.DisplayMember = "Title";
+            comboCatalog.ValueMember = "Id";
+            comboCatalog.DataSource = dt;
+        }
+
+        private void comboCatalog_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboCatalog.SelectedItem is DataRowView row)
+            {
+                Price = Convert.ToInt32(row["Price"]);
+                string imgPath = row["ImagePath"].ToString(); // название поля из БД
+
+                priceLbl.Text = $"Цена: {Price} ₽";
+
+                string fullPath = Path.Combine(Application.StartupPath, imgPath);
+                if (File.Exists(fullPath))
+                    flowerPic.Image = Image.FromFile(fullPath);
+                else
+                    flowerPic.Image = null;
+            }
+        }
+
+        private void comboCatalog_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+        }
+
+        private void flowerPic_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void confirmBtn_Click_1(object sender, EventArgs e)
+        {
+            if (BilliDGV.Rows.Count == 0)
+            {
+                MessageBox.Show("Пожалуйста, добавьте хотя бы один букет в заказ.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            MessageBox.Show("Заказ успешно оформлен!", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // Дополнительно — можно очистить заказ:
+            BilliDGV.Rows.Clear();
+            totalLbl.Text = "Общая сумма: 0 ₽";
+            n = 0;
+        }
+
     }
 }

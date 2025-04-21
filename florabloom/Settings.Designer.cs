@@ -121,7 +121,6 @@
             PriceTb.Name = "PriceTb";
             PriceTb.Size = new Size(212, 30);
             PriceTb.TabIndex = 7;
-            PriceTb.TextChanged += PriceTb_TextChanged;
             // 
             // Backbt
             // 
@@ -184,8 +183,9 @@
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4);
             Name = "Settings";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Настройки";
-            Load += Настройки_Load;
+            Load += Settings_Load;
             ResumeLayout(false);
             PerformLayout();
         }

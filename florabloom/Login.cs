@@ -23,7 +23,7 @@ namespace florabloom
             {
                 MessageBox.Show("Неправильный ввод!");
             }
-            else if (UnameTb.Text == "User" && PasswordTb.Text == "Pass")
+            else if (UnameTb.Text == "user" && PasswordTb.Text == "pass")
             {
                 Billing Obj = new Billing("admin");
                 Obj.Show();

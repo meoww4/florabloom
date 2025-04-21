@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace florabloom
@@ -13,92 +7,78 @@ namespace florabloom
     public partial class Settings : Form
     {
         Functions Con;
-        Form previousForm;
+        string role;
 
-        public Settings(Form callingForm)
+        public Settings(string callingRole)
         {
             InitializeComponent();
             Con = new Functions();
-            previousForm = callingForm;
+            role = callingRole;
+            LoadCatalogItems();
         }
 
-
-        private void TextBox1_TextChanged(object sender, EventArgs e)
+        // Загрузка данных из таблицы CatalogTb
+        private void LoadCatalogItems()
         {
+            string query = "SELECT Id, Title FROM CatalogTb";
+            DataTable dt = Con.GetData(query);
 
-        }
-
-        private void Настройки_Load(object sender, EventArgs e)
-        {
-
+            FlowerCb.DisplayMember = "Title";
+            FlowerCb.ValueMember = "Id";
+            FlowerCb.DataSource = dt;
         }
 
         private void SubmitBtn_Click_1(object sender, EventArgs e)
         {
-            string Key;
             try
             {
-
-                int Pr = Convert.ToInt32(PriceTb.Text);
-
-
-
                 if (FlowerCb.SelectedIndex == -1)
                 {
-                    MessageBox.Show("Пожалуйста, выберите букет!");
+                    MessageBox.Show("Пожалуйста, выберите букет!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
-                else if (FlowerCb.SelectedIndex == 0)
+
+                if (string.IsNullOrWhiteSpace(PriceTb.Text))
                 {
-                    Key = "Large";
-                    string Query = "Update FlowerTb set Price = {0} where Item = '{1}'";
-                    Query = string.Format(Query, Pr, Key);
-                    Con.setData(Query);
-                    MessageBox.Show("Цена обновлена!");
+                    MessageBox.Show("Пожалуйста, введите цену!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
-                else if (FlowerCb.SelectedIndex == 1)
+
+                if (!int.TryParse(PriceTb.Text, out int newPrice))
                 {
-                    Key = "Medium";
-                    string Query = "Update FlowerTb set Price = {0} where Item = '{1}'";
-                    Query = string.Format(Query, Pr, Key);
-                    Con.setData(Query);
-                    MessageBox.Show("Цена обновлена!");
+                    MessageBox.Show("Цена должна быть числом!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
-                else if (FlowerCb.SelectedIndex == 2) // Исправлено с 1 на 2
-                {
-                    Key = "Small";
-                    string Query = "Update FlowerTb set Price = {0} where Item = '{1}'";
-                    Query = string.Format(Query, Pr, Key);
-                    Con.setData(Query);
-                    MessageBox.Show("Цена обновлена!");
-                }
+
+                int selectedId = Convert.ToInt32(FlowerCb.SelectedValue);
+                string query = $"UPDATE CatalogTb SET Price = {newPrice} WHERE Id = {selectedId}";
+                Con.setData(query);
+
+                MessageBox.Show("Цена обновлена!", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-
-            catch (Exception Ex)
+            catch (Exception ex)
             {
-                MessageBox.Show(Ex.Message);
+                MessageBox.Show("Ошибка: " + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void PriceTb_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void Backbt_Click(object sender, EventArgs e)
         {
-            previousForm.Show();
-            this.Hide();
+            /*  previousForm.Show();*/
+            Billing billing = new Billing(role);
+            billing.Show();
+            this.Close();
         }
-
-
-
 
         private void label5_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        
+        private void Settings_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
