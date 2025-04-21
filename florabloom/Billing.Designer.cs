@@ -40,17 +40,15 @@
             flowerPic = new PictureBox();
             comboCatalog = new ComboBox();
             BilliDGV = new Guna.UI2.WinForms.Guna2DataGridView();
-            Column5 = new DataGridViewTextBoxColumn();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
-            Column4 = new DataGridViewTextBoxColumn();
             label4 = new Label();
             Logoutbtn = new Button();
             OrderBtn = new Button();
             SettingBtn = new Button();
             totalLbl = new Label();
             confirmBtn = new Button();
+            Column5 = new DataGridViewTextBoxColumn();
+            Column1 = new DataGridViewTextBoxColumn();
+            Column2 = new DataGridViewTextBoxColumn();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)flowerPic).BeginInit();
             ((System.ComponentModel.ISupportInitialize)BilliDGV).BeginInit();
@@ -134,7 +132,7 @@
             BilliDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             BilliDGV.ColumnHeadersHeight = 29;
             BilliDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            BilliDGV.Columns.AddRange(new DataGridViewColumn[] { Column5, Column1, Column2, Column3, Column4 });
+            BilliDGV.Columns.AddRange(new DataGridViewColumn[] { Column5, Column1, Column2 });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Trebuchet MS", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
@@ -170,31 +168,6 @@
             BilliDGV.ThemeStyle.RowsStyle.Height = 25;
             BilliDGV.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             BilliDGV.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            // 
-            // Column5
-            // 
-            Column5.HeaderText = "Id";
-            Column5.Name = "Column5";
-            // 
-            // Column1
-            // 
-            Column1.HeaderText = "Предмет";
-            Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            Column2.HeaderText = "Цена";
-            Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            Column3.HeaderText = "Количество";
-            Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            Column4.HeaderText = "Сумма";
-            Column4.Name = "Column4";
             // 
             // label4
             // 
@@ -244,9 +217,9 @@
             SettingBtn.ForeColor = Color.White;
             SettingBtn.Location = new Point(119, 601);
             SettingBtn.Name = "SettingBtn";
-            SettingBtn.Size = new Size(196, 39);
+            SettingBtn.Size = new Size(226, 39);
             SettingBtn.TabIndex = 21;
-            SettingBtn.Text = "Назначить цены";
+            SettingBtn.Text = "Редактировать цены";
             SettingBtn.UseVisualStyleBackColor = false;
             SettingBtn.Click += SettingBtn_Click_1;
             // 
@@ -272,6 +245,21 @@
             confirmBtn.Text = "Заказать";
             confirmBtn.UseVisualStyleBackColor = false;
             confirmBtn.Click += confirmBtn_Click_1;
+            // 
+            // Column5
+            // 
+            Column5.HeaderText = "Id";
+            Column5.Name = "Column5";
+            // 
+            // Column1
+            // 
+            Column1.HeaderText = "Предмет";
+            Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            Column2.HeaderText = "Цена";
+            Column2.Name = "Column2";
             // 
             // Billing
             // 
@@ -311,11 +299,6 @@
         private Label label2;
         private Guna.UI2.WinForms.Guna2DataGridView BilliDGV;
         private Bunifu.Framework.UI.BunifuThinButton2 OrderBtn1;
-        private DataGridViewTextBoxColumn Column5;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column3;
-        private DataGridViewTextBoxColumn Column4;
         private Label label4;
         private Button Logoutbtn;
         private Button OrderBtn;
@@ -325,5 +308,8 @@
         private Label priceLbl;
         private Label totalLbl;
         private Button confirmBtn;
+        private DataGridViewTextBoxColumn Column5;
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn Column2;
     }
 }

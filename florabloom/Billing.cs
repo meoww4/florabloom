@@ -158,7 +158,7 @@ namespace florabloom
 
         private void confirmBtn_Click_1(object sender, EventArgs e)
         {
-            if (BilliDGV.Rows.Count == 0)
+            if (BilliDGV.Rows.Count == 0 || BilliDGV.Rows.Cast<DataGridViewRow>().All(row => row.Cells[1].Value == null))
             {
                 MessageBox.Show("Пожалуйста, добавьте хотя бы один букет в заказ.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -166,11 +166,12 @@ namespace florabloom
 
             MessageBox.Show("Заказ успешно оформлен!", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            // Дополнительно — можно очистить заказ:
+            // Очистка заказа
             BilliDGV.Rows.Clear();
             totalLbl.Text = "Общая сумма: 0 ₽";
             n = 0;
         }
+
 
     }
 }
