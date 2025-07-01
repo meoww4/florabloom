@@ -22,6 +22,7 @@
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegisterForm));
             UsernameLbl = new Label();
             RegisterUnameTb = new TextBox();
             PasswordLbl = new Label();
@@ -142,6 +143,7 @@
             // 
             // RegisterForm
             // 
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(558, 458);
             Controls.Add(UsernameLbl);
@@ -154,6 +156,7 @@
             Controls.Add(MasterPasswordTb);
             Controls.Add(RegisterConfirmBtn);
             Controls.Add(RegisterCancelBtn);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "RegisterForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Регистрация пользователя";

@@ -53,11 +53,11 @@
             label1.AutoSize = true;
             label1.Font = new Font("Trebuchet MS", 18F, FontStyle.Bold);
             label1.ForeColor = Color.LightPink;
-            label1.Location = new Point(506, 56);
+            label1.Location = new Point(491, 56);
             label1.Name = "label1";
-            label1.Size = new Size(140, 29);
+            label1.Size = new Size(162, 29);
             label1.TabIndex = 1;
-            label1.Text = "FloraBloom";
+            label1.Text = "FlowerBloom";
             // 
             // pictureBox1
             // 
@@ -141,7 +141,7 @@
             // eyeIcon
             // 
             eyeIcon.Cursor = Cursors.Hand;
-            eyeIcon.Location = new Point(675, 394);
+            eyeIcon.Location = new Point(679, 394);
             eyeIcon.Name = "eyeIcon";
             eyeIcon.Size = new Size(30, 30);
             eyeIcon.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -151,6 +151,7 @@
             // 
             // Login
             // 
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(850, 592);
             Controls.Add(eyeIcon);

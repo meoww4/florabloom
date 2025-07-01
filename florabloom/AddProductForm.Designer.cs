@@ -15,6 +15,7 @@
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddProductForm));
             lblName = new Label();
             txtName = new TextBox();
             lblPrice = new Label();
@@ -116,8 +117,7 @@
             // 
             // AddProductForm
             // 
-            AutoScaleDimensions = new SizeF(9F, 22F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             ClientSize = new Size(542, 460);
             Controls.Add(Backbt);
             Controls.Add(lblName);
@@ -130,6 +130,7 @@
             Controls.Add(btnSave);
             Font = new Font("Trebuchet MS", 12F);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "AddProductForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Добавить товар";

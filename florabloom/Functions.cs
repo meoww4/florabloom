@@ -20,7 +20,7 @@ namespace florabloom
 
         public Functions()
         {
-            ConStr = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\mariia\Desktop\florabloom-master\FloraBloomBd.mdf;Integrated Security=True;Connect Timeout=30";
+            ConStr = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\masha\Desktop\florabloom-master\FloraBloomBd.mdf;Integrated Security=True;Connect Timeout=30";
             Con = new SqlConnection(ConStr);
             cmd = new SqlCommand();
             cmd.Connection = Con;

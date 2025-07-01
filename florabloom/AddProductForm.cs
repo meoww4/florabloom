@@ -54,7 +54,7 @@ namespace florabloom
 
             try
             {
-                string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\mariia\Desktop\florabloom-master\FloraBloomBd.mdf;Integrated Security=True;Connect Timeout=30";
+                string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\masha\Desktop\florabloom-master\FloraBloomBd.mdf;Integrated Security=True;Connect Timeout=30";
 
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {

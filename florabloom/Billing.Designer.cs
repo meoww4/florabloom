@@ -20,6 +20,7 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Billing));
             panel1 = new Panel();
             label2 = new Label();
             panel2 = new Panel();
@@ -57,11 +58,11 @@
             label2.AutoSize = true;
             label2.Font = new Font("Trebuchet MS", 14.25F, FontStyle.Bold);
             label2.ForeColor = Color.LightPink;
-            label2.Location = new Point(119, 9);
+            label2.Location = new Point(133, 9);
             label2.Name = "label2";
-            label2.Size = new Size(110, 24);
+            label2.Size = new Size(128, 24);
             label2.TabIndex = 6;
-            label2.Text = "FloraBloom";
+            label2.Text = "FlowerBloom";
             // 
             // panel2
             // 
@@ -129,6 +130,7 @@
             BilliDGV.Name = "BilliDGV";
             BilliDGV.ReadOnly = true;
             BilliDGV.RowHeadersVisible = false;
+            BilliDGV.RowHeadersWidth = 51;
             BilliDGV.Size = new Size(704, 448);
             BilliDGV.TabIndex = 10;
             BilliDGV.CellContentClick += BilliDGV_CellContentClick;
@@ -136,12 +138,15 @@
             // Id
             // 
             Id.HeaderText = "Id";
+            Id.MinimumWidth = 6;
             Id.Name = "Id";
             Id.ReadOnly = true;
+            Id.Width = 125;
             // 
             // Title
             // 
             Title.HeaderText = "Предмет";
+            Title.MinimumWidth = 6;
             Title.Name = "Title";
             Title.ReadOnly = true;
             Title.Width = 300;
@@ -149,6 +154,7 @@
             // BoqPrice
             // 
             BoqPrice.HeaderText = "Цена";
+            BoqPrice.MinimumWidth = 6;
             BoqPrice.Name = "BoqPrice";
             BoqPrice.ReadOnly = true;
             BoqPrice.Width = 301;
@@ -251,8 +257,7 @@
             // 
             // Billing
             // 
-            AutoScaleDimensions = new SizeF(9F, 22F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1308, 787);
             Controls.Add(RemoveBtn);
@@ -269,6 +274,7 @@
             Controls.Add(AddProductBtn);
             Font = new Font("Trebuchet MS", 12F);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4, 5, 4, 5);
             Name = "Billing";
             StartPosition = FormStartPosition.CenterScreen;

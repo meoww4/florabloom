@@ -41,11 +41,12 @@
             label1.AutoSize = true;
             label1.Font = new Font("Trebuchet MS", 18F, FontStyle.Bold, GraphicsUnit.Point, 204);
             label1.ForeColor = Color.LightPink;
-            label1.Location = new Point(408, 34);
+            label1.Location = new Point(396, 34);
             label1.Name = "label1";
-            label1.Size = new Size(140, 29);
+            label1.Size = new Size(162, 29);
             label1.TabIndex = 2;
-            label1.Text = "FloraBloom";
+            label1.Text = "FlowerBloom";
+            label1.Click += label1_Click;
             // 
             // label2
             // 
@@ -125,8 +126,7 @@
             // 
             // Settings
             // 
-            AutoScaleDimensions = new SizeF(9F, 22F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(766, 655);
             Controls.Add(SubmitBtn);
